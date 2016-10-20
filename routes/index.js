@@ -78,7 +78,8 @@ function router(app) {
         }
       }, {
         $set: {
-          needsBumpAt: Date.now() + TWO_MINS_IN_MS
+          needsBumpAt: Date.now() + TWO_MINS_IN_MS,
+          bumpedAt: null
         }
       }, sync.defer()));
 
