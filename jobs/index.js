@@ -6,11 +6,11 @@ const _ = require('underscore');
 const db = require('../db');
 
 
-const ONCE_PER_WEEKDAY_CRON_PATTERN = '00 00 12 * * 1-5';
+const ONCE_PER_MIN_PATTERN = '00 * * * * 1-5';
 const THIRTY_SEC_IN_MS = 30 * 1000;
 
 // Check for contacts that are ready to bump.
-new CronJob(ONCE_PER_WEEKDAY_CRON_PATTERN, () => {
+new CronJob(ONCE_PER_MIN_PATTERN, () => {
   sync.fiber(() => {
     const needContacting = sync.await(db.collection('contacts').find({
       // Expired contacts.
