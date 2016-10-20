@@ -16,8 +16,9 @@ app.use(express.static('public'));
 require('./routes')(app);
 
 // Start the app.
-app.listen(3000, () => {
-  console.log('app started');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log('app started. listening on', port);
 });
 
 // Start jobs.
