@@ -11,11 +11,11 @@ html
     title Contact Bump
   body
     div.container
-      h1 Contact Bump
+      .page-header
+        h1= '<Contact Bump>'
 
       .row
         .col-md-6
-          h2 Contacts
           each contact in contacts
             .row
               .col-md-6
@@ -32,18 +32,21 @@ html
                           |  Contacted
                     else
                       p= 'needsBumpAt: ' + moment(contact.needsBumpAt).format('M/D/YYYY h:mma')
-                      | You solid on dis one.
+
         .col-md-6
           .row
             .col-md-6
-              h2 New Contact
-              form(action='/contacts' method='POST')
-                .form-group
-                  label Name
-                  input.form-control(type='text' name='name')
-                .checkbox
-                  label
-                    input(type='checkbox' name='needsContacting')
-                    | Needs contacting
-                .form-group
-                  button.btn.btn-default(type='submit') Create
+              .panel.panel-default
+                .panel-heading
+                  h2 New Contact
+                .panel-body
+                  form(action='/contacts' method='POST')
+                    .form-group
+                      label Name
+                      input.form-control(type='text' name='name')
+                    .checkbox
+                      label
+                        input(type='checkbox' name='needsContacting')
+                        | Needs contacting
+                    .form-group
+                      button.btn.btn-default(type='submit') Create
