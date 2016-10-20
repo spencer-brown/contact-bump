@@ -19,3 +19,6 @@ require('./routes')(app);
 app.listen(3000, () => {
   console.log('app started');
 });
+
+// Start jobs.
+require('./jobs');

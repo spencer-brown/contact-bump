@@ -13,16 +13,24 @@ html
       h1 Contact Bump
 
       h2 New Contact
-      form(action='/contacts' method='POST')
-        div.form-group
-          label Name
-          input.form-control(type='text' name='name')
-
-        div.form-group
-          button.btn.btn-default(type='submit') Create
+      .row
+        .col-md-4
+          form(action='/contacts' method='POST')
+            .form-group
+              label Name
+              input.form-control(type='text' name='name')
+            .checkbox
+              label
+                input(type='checkbox' name='needsContacting')
+                | Needs contacting
+            .form-group
+              button.btn.btn-default(type='submit') Create
 
       h2 Contacts
       each contact in contacts
-        div.row
-          div.col-md-3
-            p= 'Name: ' + contact.name
+        .row
+          .col-md-3
+            .panel.panel-default
+              .panel-body
+                p= 'Name: ' + contact.name
+                p= 'Needs contacting: ' + contact.needsContacting
