@@ -33,6 +33,8 @@ function router(app) {
         name: req.body.name
       };
 
+      console.log('creating contact', contact);
+
       sync.await(db.collection('contacts').insert(contact, sync.defer()));
 
       res.redirect('/');
