@@ -10,7 +10,11 @@ const TWO_MINS_IN_MS = 2 * 60 * 1000;
 
 
 function router(app) {
-  app.get('/', (req, res, next) => {
+  app.get('/',  (req, res, next) => {
+    res.render('teaser');
+  });
+
+  app.get('/hidden', (req, res, next) => {
     sync.fiber(() => {
       const contacts = sync.await(db.collection('contacts').find({
       }, {

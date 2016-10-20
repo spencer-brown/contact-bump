@@ -1,0 +1,33 @@
+.jumbotron-full {
+  height:100vh;
+  background-image: url('https://images.unsplash.com/photo-1455541029258-597a69778eed?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb');
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  position: relative;
+  margin-left: -20px;
+  margin-right: -20px;
+  top: -5px;
+  bottom: 0;
+}
+
+.teaser {
+  top: 150px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+.teaser .custom-header {
+  margin-top: 100px;
+  color: #E4F1FE;
+  font-size: 5em;
+}
+
+.teaser .custom-follow-on {
+  color: #E4F1FE;
+  font-size: 2em;
+}
