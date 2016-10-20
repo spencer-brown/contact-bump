@@ -6,7 +6,7 @@ const mongojs = require('mongojs');
 const db = require('../db');
 
 
-const THIRTY_SEC_IN_MS = 30 * 1000;
+const FIVE_MINS_IN_MS = 5 * 60 * 1000;
 
 
 function router(app) {
@@ -27,7 +27,7 @@ function router(app) {
 
   app.post('/contacts', (req, res, next) => {
     sync.fiber(() => {
-      const needsBumpAt = (req.body.needsContacting) ? Date.now() : Date.now() + THIRTY_SEC_IN_MS;
+      const needsBumpAt = (req.body.needsContacting) ? Date.now() : Date.now() + FIVE_MINS_IN_MS;
       const contact = {
         needsBumpAt,
         name: req.body.name
@@ -49,7 +49,7 @@ function router(app) {
         }, {
           $set: {
             bumpedAt: null,
-            needsBumpAt: Date.now() + THIRTY_SEC_IN_MS
+            needsBumpAt: Date.now() + FIVE_MINS_IN_MS
           }
         }, sync.defer()));
       } catch (err) {

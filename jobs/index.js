@@ -6,11 +6,11 @@ const _ = require('underscore');
 const db = require('../db');
 
 
-const EVERY_SECOND_PATTERN = '* * * * * *';
+const ONCE_PER_WEEKDAY_CRON_PATTERN = '00 00 12 * * 1-5';
 const THIRTY_SEC_IN_MS = 30 * 1000;
 
 // Check for contacts that are ready to bump.
-new CronJob(EVERY_SECOND_PATTERN, () => {
+new CronJob(ONCE_PER_WEEKDAY_CRON_PATTERN, () => {
   sync.fiber(() => {
     const needContacting = sync.await(db.collection('contacts').find({
       // Expired contacts.
@@ -22,7 +22,10 @@ new CronJob(EVERY_SECOND_PATTERN, () => {
       bumpedAt: null
     }, {
       name: 1
-    }, sync.defer()));
+    })
+
+    // Limit to two contacts per day.
+    .limit(2, sync.defer()));
 
     if (_.isEmpty(needContacting)) {
       console.log('no contacts to bump');
@@ -59,6 +62,7 @@ new CronJob(EVERY_SECOND_PATTERN, () => {
     } catch (err) {
       console.log('ERROR:', err);
     }
+
     console.log('bumped', contactIds);
   });
 }, null, true, 'America/Los_Angeles');
