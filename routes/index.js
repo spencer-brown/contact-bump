@@ -39,22 +39,6 @@ function router(app) {
     });
   });
 
-  app.get('/testsms', (req, res, next) => {
-    sync.fiber(() => {
-      try {
-        sync.await(twilio.sendMessage({
-          to: '+17404053797',
-          from: '+16697219661',
-          body: 'test sms'
-        }, sync.defer()));
-      } catch (err) {
-        console.log('ERROR:', err);
-      }
-
-      res.send('Sent test text message.');
-    });
-  });
-
   app.post('/clearBump', (req, res, next) => {
     sync.fiber(() => {
       const contactId = req.body.contactId;
@@ -73,6 +57,22 @@ function router(app) {
       }
 
       res.redirect('/');
+    });
+  });
+
+  app.get('/testsms', (req, res, next) => {
+    sync.fiber(() => {
+      try {
+        sync.await(twilio.sendMessage({
+          to: '+17404053797',
+          from: '+16697219661',
+          body: 'test sms'
+        }, sync.defer()));
+      } catch (err) {
+        console.log('ERROR:', err);
+      }
+
+      res.send('Sent test text message.');
     });
   });
 }
