@@ -62,6 +62,29 @@ function router(app) {
     });
   });
 
+  app.post('/incoming', (req, res, next) => {
+    sync.fiber(() => {
+      console.log('incoming message Body:', req.body.Body);
+
+      const msg = req.body.Body;
+      const names = msg.toLowerCase().replace(' ', '').split(',');
+
+      console.log('resetting', names);
+
+      sync.await(db.collection('contacts').update({
+        name: {
+          $in: names
+        }
+      }, {
+        $set: {
+          needsBumpAt: Date.now() + FIVE_MINS_IN_MS
+        }
+      }, sync.defer()));
+
+      res.sendStatus(200).end();
+    });
+  });
+
   app.get('/testsms', (req, res, next) => {
     sync.fiber(() => {
       try {
