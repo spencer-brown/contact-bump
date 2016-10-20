@@ -16,7 +16,8 @@ function router(app) {
       }, {
         _id: 1,
         name: 1,
-        bumpedAt: 1
+        bumpedAt: 1,
+        needsBumpAt: 1
       }, sync.defer()));
 
       res.render('index', {

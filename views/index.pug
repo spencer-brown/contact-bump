@@ -13,32 +13,37 @@ html
     div.container
       h1 Contact Bump
 
-      h2 New Contact
       .row
-        .col-md-4
-          form(action='/contacts' method='POST')
-            .form-group
-              label Name
-              input.form-control(type='text' name='name')
-            .checkbox
-              label
-                input(type='checkbox' name='needsContacting')
-                | Needs contacting
-            .form-group
-              button.btn.btn-default(type='submit') Create
-
-      h2 Contacts
-      each contact in contacts
-        .row
-          .col-md-3
-            .panel.panel-default
-              .panel-body
-                p= 'Name: ' + contact.name
-                if contact.bumpedAt
-                  form(action='/clearBump' method='POST')
-                    input.hidden(name='contactId' value=contact._id)
-                    button.btn.btn-default(type='submit')
-                      i.fa.fa-check-square-o(aria-hidden='true')
-                      |  Contacted
-                else
-                  | You solid on dis one.
+        .col-md-6
+          h2 Contacts
+          each contact in contacts
+            .row
+              .col-md-6
+                .panel.panel-default
+                  .panel-heading
+                    h4= contact.name
+                  .panel-body
+                    if contact.bumpedAt
+                      p= 'bumpedAt: ' + moment(contact.bumpedAt).format('M/D/YYYY h:mma')
+                      form(action='/clearBump' method='POST')
+                        input.hidden(name='contactId' value=contact._id)
+                        button.btn.btn-success(type='submit')
+                          i.fa.fa-check-square-o(aria-hidden='true')
+                          |  Contacted
+                    else
+                      p= 'needsBumpAt: ' + moment(contact.needsBumpAt).format('M/D/YYYY h:mma')
+                      | You solid on dis one.
+        .col-md-6
+          .row
+            .col-md-6
+              h2 New Contact
+              form(action='/contacts' method='POST')
+                .form-group
+                  label Name
+                  input.form-control(type='text' name='name')
+                .checkbox
+                  label
+                    input(type='checkbox' name='needsContacting')
+                    | Needs contacting
+                .form-group
+                  button.btn.btn-default(type='submit') Create

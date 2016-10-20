@@ -8,6 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 // Set up templating.
 app.set('view engine', 'pug');
+app.locals.moment = require('moment');
 
 // Set up static file serving.
 app.use(express.static('public'));
