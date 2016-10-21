@@ -21,7 +21,10 @@ new CronJob(ONCE_PER_MIN_PATTERN, () => {
       // Aren't in a pending state.
       bumpedAt: null
     }, {
-      name: 1
+      firstName: 1,
+      lastName: 1,
+      phoneNumber: 1,
+      email: 1
     })
 
     // Limit to two contacts per day.
@@ -35,7 +38,11 @@ new CronJob(ONCE_PER_MIN_PATTERN, () => {
     }
 
     // Send text about contacts.
-    const joinedNames = _.pluck(needContacting, 'name').join(', ');
+    const joinedNames = _.map(needContacting, (contact) => {
+      return `${contact.firstName} ${contact.lastName} - ${contact.phoneNumber || contact.email}`;
+    })
+    .join(', ');
+
     const body = `Needs contacting: ${joinedNames}`;
     try {
       sync.await(twilio.sendMessage({

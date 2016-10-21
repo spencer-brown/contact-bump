@@ -19,7 +19,10 @@ function router(app) {
       const contacts = sync.await(db.collection('contacts').find({
       }, {
         _id: 1,
-        name: 1,
+        firstName: 1,
+        lastName: 1,
+        phoneNumber: 1,
+        email: 1,
         bumpedAt: 1,
         needsBumpAt: 1
       }, sync.defer()));
@@ -35,7 +38,10 @@ function router(app) {
       const needsBumpAt = (req.body.needsContacting) ? Date.now() : Date.now() + TWO_MINS_IN_MS;
       const contact = {
         needsBumpAt,
-        name: req.body.name
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        phoneNumber: req.body.phoneNumber,
+        email: req.body.email
       };
 
       console.log('creating contact', contact);
@@ -88,22 +94,6 @@ function router(app) {
       }, sync.defer()));
 
       res.sendStatus(200).end();
-    });
-  });
-
-  app.get('/testsms', (req, res, next) => {
-    sync.fiber(() => {
-      try {
-        sync.await(twilio.sendMessage({
-          to: '+17404053797',
-          from: '+16697219661',
-          body: 'test sms'
-        }, sync.defer()));
-      } catch (err) {
-        console.log('ERROR:', err);
-      }
-
-      res.send('Sent test text message.');
     });
   });
 }

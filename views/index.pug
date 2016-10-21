@@ -18,20 +18,30 @@ html
         .col-md-6
           each contact in contacts
             .row
-              .col-md-6
+              .col-md-12
                 .panel.panel-default
-                  .panel-heading
-                    h4= contact.name
                   .panel-body
-                    if contact.bumpedAt
-                      p= 'bumpedAt: ' + moment(contact.bumpedAt).format('M/D/YYYY h:mma')
-                      form(action='/clearBump' method='POST')
-                        input.hidden(name='contactId' value=contact._id)
-                        button.btn.btn-success(type='submit')
-                          i.fa.fa-check-square-o(aria-hidden='true')
-                          |  Contacted
-                    else
-                      p= 'needsBumpAt: ' + moment(contact.needsBumpAt).format('M/D/YYYY h:mma')
+                    .row
+                      .col-md-4
+                        h5= contact.firstName + ' ' + contact.lastName
+                    .row
+                      .col-md-12
+                        if contact.phoneNumber
+                          p= 'Phone #: ' + contact.phoneNumber
+
+                        if contact.email
+                          p= 'Email: ' + contact.email
+
+                        if contact.bumpedAt
+                          p= 'bumpedAt: ' + moment(contact.bumpedAt).format('M/D/YYYY h:mma')
+                          form(action='/clearBump' method='POST')
+                            input.hidden(name='contactId' value=contact._id)
+                            .text-right
+                              button.btn.btn-success(type='submit')
+                                i.fa.fa-check-square-o(aria-hidden='true')
+                                |  Contacted
+                        else
+                          p= 'Next bump: ' + moment(contact.needsBumpAt).format('M/D/YYYY h:mma')
 
         .col-md-6
           .row
@@ -42,11 +52,21 @@ html
                 .panel-body
                   form(action='/contacts' method='POST')
                     .form-group
-                      label Name
-                      input.form-control(type='text' name='name')
+                      label First name
+                      input.form-control(type='text' name='firstName')
+                    .form-group
+                      label Last name
+                      input.form-control(type='text' name='lastName')
+                    .form-group
+                      label Phone #
+                      input.form-control(type='tel' name='phoneNumber')
+                    .form-group
+                      label Email
+                      input.form-control(type='email' name='email')
                     .checkbox
                       label
                         input(type='checkbox' name='needsContacting')
                         | Needs contacting
                     .form-group
-                      button.btn.btn-default(type='submit') Create
+                      .text-right
+                        button.btn.btn-default(type='submit') Create
