@@ -42,7 +42,7 @@ function router(app) {
 
       sync.await(db.collection('contacts').insert(contact, sync.defer()));
 
-      res.redirect('/');
+      res.redirect('/hidden');
     });
   });
 
@@ -63,7 +63,7 @@ function router(app) {
         console.log('ERROR:', err);
       }
 
-      res.redirect('/');
+      res.redirect('/hidden');
     });
   });
 
