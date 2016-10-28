@@ -1,1 +1,9 @@
-@import "./style";
+/* Bootstrap Overrides */
+/* TODO: Create an overrides file for these? */
+$brand-success: #3FC380 !default;
+
+/* Installed CSS */
+@import "bootstrap";
+
+/* Custom CSS */
+@import "style";
