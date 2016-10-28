@@ -22,7 +22,8 @@ module.exports = function(grunt) {
           'public/sass/*.scss'
         ],
         tasks: [
-          'sass'
+          'sass',
+          'concat'
         ]
       }
     },
@@ -47,6 +48,17 @@ module.exports = function(grunt) {
       options: {
         logConcurrentOutput: true
       }
+    },
+    concat: {
+      options: {
+        separator: ';'
+      },
+      dist: {
+        src: [
+          'bower_components/jquery/dist/jquery.min.js'
+        ],
+        dest: 'public/js/build.js'
+      }
     }
   });
 
@@ -54,6 +66,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
-  grunt.registerTask('start', [ 'concurrent:start']);
+  grunt.registerTask('start', ['concat', 'concurrent:start']);
 };
