@@ -1,0 +1,26 @@
+.row
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        h2 New Contact
+      .panel-body
+        form(action='/contacts' method='POST')
+          .form-group
+            label First name
+            input.form-control(type='text' name='firstName')
+          .form-group
+            label Last name
+            input.form-control(type='text' name='lastName')
+          .form-group
+            label Phone #
+            input.form-control(type='tel' name='phoneNumber')
+          .form-group
+            label Email
+            input.form-control(type='email' name='email')
+          .checkbox
+            label
+              input(type='checkbox' name='needsContacting')
+              | Needs contacting
+          .form-group
+            .text-right
+              button.btn.btn-default(type='submit') Create
