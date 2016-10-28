@@ -4,7 +4,8 @@ module.exports = function(grunt) {
       dist: {
         options: {
           loadPath: [
-            'bower_components/bootstrap-sass/assets/stylesheets'
+            'bower_components/bootstrap-sass/assets/stylesheets',
+            'bower_components/font-awesome/scss'
           ]
         },
         files: {
