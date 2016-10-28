@@ -4,6 +4,7 @@
   "predef": [
     "console",
     "module",
-    "require"
+    "require",
+    "process"
   ]
 }
