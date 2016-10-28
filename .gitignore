@@ -2,3 +2,4 @@ node_modules
 public/css/*.css.map
 .sass-cache
 ngrok
+bower_components
