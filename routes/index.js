@@ -27,9 +27,14 @@ function router(app) {
         needsBumpAt: 1
       }, sync.defer()));
 
-      res.render('index', {
-        contacts
-      });
+      let data = {
+        contacts,
+        env: {}
+      };
+      // TODO: Include this variable in every template automatically.
+      data.env[process.env.ENVIRONMENT] = true;
+
+      res.render('index', data);
     });
   });
 
