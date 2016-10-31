@@ -25,6 +25,11 @@ module.exports = function(grunt) {
           'sass',
           'concat'
         ]
+      },
+      html: {
+        files: [
+          'views/*'
+        ]
       }
     },
     nodemon: {
