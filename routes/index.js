@@ -25,7 +25,6 @@ function router(app) {
 
   app.get('/feed', isAuthenticated, (req, res, next) => {
     sync.fiber(() => {
-      // TODO: Add index on userId to contacts
       const contacts = sync.await(db.collection('contacts').find({
         // TODO: `req.user._id` should be transformed to a string in middleware.
         userId: req.user._id.toString()
