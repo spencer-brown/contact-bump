@@ -110,12 +110,6 @@ function router(app) {
       res.sendStatus(200).end();
     });
   });
-
-  app.get('/loggedin', isAuthenticated, (req, res, next) => {
-    sync.fiber(() => {
-      res.render('loggedin');
-    });
-  });
 }
 
 module.exports = router;
