@@ -25,7 +25,10 @@ function router(app) {
 
   app.get('/feed', isAuthenticated, (req, res, next) => {
     sync.fiber(() => {
+      // TODO: Add index on userId to contacts
       const contacts = sync.await(db.collection('contacts').find({
+        // TODO: `req.user._id` should be transformed to a string in middleware.
+        userId: req.user._id.toString()
       }, {
         _id: 1,
         firstName: 1,
@@ -33,7 +36,8 @@ function router(app) {
         phoneNumber: 1,
         email: 1,
         bumpedAt: 1,
-        needsBumpAt: 1
+        needsBumpAt: 1,
+        userId: 1
       }, sync.defer()));
 
       let data = {
@@ -52,10 +56,10 @@ function router(app) {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         phoneNumber: req.body.phoneNumber,
-        email: req.body.email
+        email: req.body.email,
+        // TODO: This should be transformed to a string in middleware.
+        userId: req.user._id.toString()
       };
-
-      console.log('creating contact', contact);
 
       sync.await(db.collection('contacts').insert(contact, sync.defer()));
 
