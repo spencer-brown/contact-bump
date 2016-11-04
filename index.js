@@ -1,6 +1,3 @@
-const sync = require('synchronize');
-const mongojs = require('mongojs');
-const db = require('./db');
 const express = require('express');
 const app = express();
 const config = require('./config');
@@ -33,67 +30,7 @@ app.use(session({
 }));
 
 // Set up Passport.
-// TODO: Move this logic somewhere else.
-const passport = require('passport');
-const FacebookStrategy = require('passport-facebook').Strategy;
-passport.use(new FacebookStrategy({
-  clientID: config.FACEBOOK_APP_ID,
-  clientSecret: config.FACEBOOK_APP_SECRET,
-  callbackURL: 'http://localhost:3000/login/facebook/return'
-}, (accessToken, refreshToken, profile, cb) => {
-  sync.fiber(() => {
-    try {
-      sync.await(db.collection('users').update({
-        'facebook.profile.id': profile.id
-      }, {
-        $set: {
-          facebook: {
-            accessToken,
-            profile
-          }
-        }
-      }, {
-        upsert: true
-      }, sync.defer()));
-
-      const user = sync.await(db.collection('users').findOne({
-        'facebook.profile.id': profile.id
-      }, sync.defer()));
-
-      cb(null, user);
-    } catch (e) {
-      console.log('ERROR:', e);
-      cb(e, null);
-    }
-
-  });
-}));
-passport.serializeUser((user, done) => {
-  done(null, user._id);
-});
-passport.deserializeUser((userId, done) => {
-  sync.fiber(() => {
-    const user = sync.await(db.collection('users').findOne({
-      _id: mongojs.ObjectId(userId)
-    }, sync.defer()));
-
-    done(null, user);
-  });
-});
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.get('/login/facebook', passport.authenticate('facebook'));
-app.get('/login/facebook/return',
-  passport.authenticate('facebook', {failureRedirect: '/'}),
-  (req, res, next) => {
-    res.redirect('/loggedin');
-  });
-app.get('/logout', (req, res, next) => {
-  req.logout();
-  res.redirect('/');
-});
+require('./bootstrap/passportSetup.js')(app);
 
 // Require routes.
 require('./routes')(app);
