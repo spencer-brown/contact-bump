@@ -86,13 +86,13 @@ app.use(passport.session());
 
 app.get('/login/facebook', passport.authenticate('facebook'));
 app.get('/login/facebook/return',
-  passport.authenticate('facebook', {failureRedirect: '/login'}),
+  passport.authenticate('facebook', {failureRedirect: '/'}),
   (req, res, next) => {
     res.redirect('/loggedin');
   });
 app.get('/logout', (req, res, next) => {
   req.logout();
-  res.redirect('/login');
+  res.redirect('/');
 });
 
 // Require routes.

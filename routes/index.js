@@ -12,7 +12,7 @@ const TWO_MINS_IN_MS = 2 * 60 * 1000;
 
 function router(app) {
   app.get('/',  (req, res, next) => {
-    res.render('teaser');
+    res.render('login');
   });
 
   app.get('/hidden', (req, res, next) => {
@@ -97,12 +97,6 @@ function router(app) {
       }, sync.defer()));
 
       res.sendStatus(200).end();
-    });
-  });
-
-  app.get('/login', (req, res, next) => {
-    sync.fiber(() => {
-      res.render('login');
     });
   });
 
