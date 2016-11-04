@@ -10,12 +10,20 @@ const isAuthenticated = require('./middleware/isAuthenticated');
 const TWO_MINS_IN_MS = 2 * 60 * 1000;
 
 
+
 function router(app) {
+  // Set app-wide locals.
+  require('./middleware/setLocals')(app);
+
   app.get('/',  (req, res, next) => {
-    res.render('login');
+    if (req.user) {
+      res.redirect('/feed');
+    } else {
+      res.render('index');
+    }
   });
 
-  app.get('/hidden', (req, res, next) => {
+  app.get('/feed', (req, res, next) => {
     sync.fiber(() => {
       const contacts = sync.await(db.collection('contacts').find({
       }, {
@@ -32,7 +40,7 @@ function router(app) {
         contacts
       };
 
-      res.render('index', data);
+      res.render('feed', data);
     });
   });
 
@@ -51,7 +59,7 @@ function router(app) {
 
       sync.await(db.collection('contacts').insert(contact, sync.defer()));
 
-      res.redirect('/hidden');
+      res.redirect('/feed');
     });
   });
 
@@ -72,7 +80,7 @@ function router(app) {
         console.log('ERROR:', err);
       }
 
-      res.redirect('/hidden');
+      res.redirect('/feed');
     });
   });
 

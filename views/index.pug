@@ -1,9 +1,7 @@
 extends layout
 
 block content
-  .row
-    .col-md-6
-      include contact_list.pug
-
-    .col-md-6
-      include new_contact.pug
+  .jumbotron
+    h1 Welcome to Contact Bump
+    p Your personal assistant for keeping in touch with important contacts
+    a.btn.btn-primary(href="/login/facebook") Log in With Facebook

@@ -9,8 +9,14 @@ html
     title Contact Bump
   body
     .container
-      .page-header
-        h1= '<Contact Bump>'
+      .page-header.header-container
+        h1.header-left= '<Contact Bump>'
+
+        .header-right
+          if loggedIn
+            a.btn.btn-primary(href="/logout") Log out
+          else
+            a.btn.btn-primary(href="/login/facebook") Log in With Facebook
 
       block content
 

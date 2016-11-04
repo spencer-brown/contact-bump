@@ -65,7 +65,7 @@ module.exports = (app) => {
   app.get('/login/facebook/return',
     passport.authenticate('facebook', {failureRedirect: '/'}),
     (req, res, next) => {
-      res.redirect('/loggedin');
+      res.redirect('/feed');
     });
   app.get('/logout', (req, res, next) => {
     req.logout();
