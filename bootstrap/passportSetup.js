@@ -19,6 +19,9 @@ module.exports = (app) => {
         sync.await(db.collection('users').update({
           'facebook.profile.id': profile.id
         }, {
+          $setOnInsert: {
+            _id: mongojs.ObjectID().toString()
+          },
           $set: {
             facebook: {
               accessToken,
@@ -49,7 +52,7 @@ module.exports = (app) => {
   passport.deserializeUser((userId, done) => {
     sync.fiber(() => {
       const user = sync.await(db.collection('users').findOne({
-        _id: mongojs.ObjectId(userId)
+        _id: userId
       }, sync.defer()));
   
       done(null, user);

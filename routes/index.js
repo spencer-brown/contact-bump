@@ -10,7 +10,6 @@ const isAuthenticated = require('./middleware/isAuthenticated');
 const TWO_MINS_IN_MS = 2 * 60 * 1000;
 
 
-
 function router(app) {
   // Set app-wide locals.
   require('./middleware/setLocals')(app);
@@ -26,8 +25,7 @@ function router(app) {
   app.get('/feed', isAuthenticated, (req, res, next) => {
     sync.fiber(() => {
       const contacts = sync.await(db.collection('contacts').find({
-        // TODO: `req.user._id` should be transformed to a string in middleware.
-        userId: req.user._id.toString()
+        userId: req.user._id
       }, {
         _id: 1,
         firstName: 1,
@@ -52,12 +50,12 @@ function router(app) {
       const needsBumpAt = (req.body.needsContacting) ? Date.now() : Date.now() + TWO_MINS_IN_MS;
       const contact = {
         needsBumpAt,
+        _id: mongojs.ObjectID().toString(),
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         phoneNumber: req.body.phoneNumber,
         email: req.body.email,
-        // TODO: This should be transformed to a string in middleware.
-        userId: req.user._id.toString()
+        userId: req.user._id
       };
 
       sync.await(db.collection('contacts').insert(contact, sync.defer()));
@@ -72,7 +70,7 @@ function router(app) {
 
       try {
         sync.await(db.collection('contacts').update({
-          _id: mongojs.ObjectId(contactId)
+          _id: contactId
         }, {
           $set: {
             bumpedAt: null,
