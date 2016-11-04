@@ -8164,4 +8164,16 @@ button.close {
   color: #E4F1FE;
   font-size: 2em; }
 
+.header-container {
+  height: 60px; }
+
+.header-left {
+  display: inline;
+  float: left;
+  margin: 0px; }
+
+.header-right {
+  display: inline;
+  float: right; }
+
 /*# sourceMappingURL=main.css.map */
