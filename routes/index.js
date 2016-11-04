@@ -4,6 +4,7 @@ const sync = require('synchronize');
 const mongojs = require('mongojs');
 
 const db = require('../db');
+const isAuthenticated = require('./middleware/isAuthenticated');
 
 
 const TWO_MINS_IN_MS = 2 * 60 * 1000;
@@ -96,6 +97,18 @@ function router(app) {
       }, sync.defer()));
 
       res.sendStatus(200).end();
+    });
+  });
+
+  app.get('/login', (req, res, next) => {
+    sync.fiber(() => {
+      res.render('login');
+    });
+  });
+
+  app.get('/loggedin', isAuthenticated, (req, res, next) => {
+    sync.fiber(() => {
+      res.render('loggedin');
     });
   });
 }
