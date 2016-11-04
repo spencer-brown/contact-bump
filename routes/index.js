@@ -28,11 +28,8 @@ function router(app) {
       }, sync.defer()));
 
       let data = {
-        contacts,
-        env: {}
+        contacts
       };
-      // TODO: Include this variable in every template automatically.
-      data.env[process.env.ENVIRONMENT] = true;
 
       res.render('index', data);
     });

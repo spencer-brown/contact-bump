@@ -53,6 +53,10 @@ process.env.ENVIRONMENT = args[0].split('=')[1];
 process.env.TWILIO_ACC_SID = config.TWILIO_ACC_SID;
 process.env.TWILIO_AUTH_TOKEN = config.TWILIO_AUTH_TOKEN;
 
+// Set locals for pug.
+app.locals.env = {};
+app.locals.env[process.env.ENVIRONMENT] = true;
+
 // Start the app.
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
