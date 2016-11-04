@@ -1,6 +1,4 @@
-/* Bootstrap Overrides */
-/* TODO: Create an overrides file for these? */
-$brand-success: #3FC380 !default;
+@import "bootstrap-overrides"
 
 /* Installed CSS */
 @import "bootstrap";
