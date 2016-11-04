@@ -23,7 +23,7 @@ function router(app) {
     }
   });
 
-  app.get('/feed', (req, res, next) => {
+  app.get('/feed', isAuthenticated, (req, res, next) => {
     sync.fiber(() => {
       const contacts = sync.await(db.collection('contacts').find({
       }, {
