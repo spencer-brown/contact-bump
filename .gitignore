@@ -5,8 +5,3 @@ public/js/*
 ngrok
 bower_components
 config/index.js
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml

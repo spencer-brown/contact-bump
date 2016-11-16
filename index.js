@@ -1,9 +1,6 @@
 const express = require('express');
 const app = express();
-//const config = require('./config');
-const config = {};
-console.log(process.env);
-console.log(process.env.foo);
+const config = require('./config');
 
 // Set up bodyParser.
 const bodyParser = require('body-parser');
