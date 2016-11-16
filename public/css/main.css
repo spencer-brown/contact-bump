@@ -8133,6 +8133,9 @@ button.close {
   clip: auto; }
 
 /* Custom CSS */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none; } }
 .jumbotron-full {
   height: 100vh;
   background-image: url("https://images.unsplash.com/photo-1455541029258-597a69778eed?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb");
