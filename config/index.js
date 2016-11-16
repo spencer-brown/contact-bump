@@ -13,6 +13,7 @@ if (process.env.ENVIRONMENT === 'prod') {
   config.FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET;
 } else {
   // dev
+  // FIXME: Fix local env variables.
   console.log('process.env.ENVIRONMENT was', process.env.ENVIRONMENT);
   //config = require(`./${process.env.ENVIRONMENT}`);
   config = {};

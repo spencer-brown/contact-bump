@@ -8,11 +8,19 @@ const db = require('../db');
 
 
 module.exports = (app) => {
+
+  let callbackURL;
+  if (process.env.ENVIRONMENT === 'prod') {
+    callbackURL = 'http://contact-bump-dev.us-east-1.elasticbeanstalk.com/login/facebook/return';
+  } else if (process.env.ENVIRONMENT === 'dev') {
+    callbackURL = 'http://localhost:3000/login/facebook/return';
+  }
+
   // Configure Passport strategy.
   passport.use(new FacebookStrategy({
+    callbackURL,
     clientID: config.FACEBOOK_APP_ID,
     clientSecret: config.FACEBOOK_APP_SECRET,
-    callbackURL: 'http://localhost:3000/login/facebook/return'
   }, (accessToken, refreshToken, profile, cb) => {
     sync.fiber(() => {
       try {
