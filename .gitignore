@@ -4,4 +4,9 @@ public/js/*
 .sass-cache
 ngrok
 bower_components
-config/index.js
+config/local.js
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

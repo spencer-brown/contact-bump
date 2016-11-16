@@ -38,6 +38,7 @@ new CronJob(ONCE_PER_MIN_PATTERN, () => {
     }
 
     // Send text about contacts.
+
     const joinedNames = _.map(needContacting, (contact) => {
       return `${contact.firstName} ${contact.lastName} - ${contact.phoneNumber || contact.email}`;
     })

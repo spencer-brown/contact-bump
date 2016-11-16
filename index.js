@@ -2,6 +2,17 @@ const express = require('express');
 const app = express();
 const config = require('./config');
 
+
+// Set up environment variables.
+const args = process.argv.slice(2);
+// TODO: Figure out a better way to do this with grunt-nodemon.
+process.env.ENVIRONMENT = args[0].split('=')[1];
+
+
+// TODO: Make this dynamic based on environment.
+process.env.TWILIO_ACC_SID = config.TWILIO_ACC_SID;
+process.env.TWILIO_AUTH_TOKEN = config.TWILIO_AUTH_TOKEN;
+
 // Set up bodyParser.
 const bodyParser = require('body-parser');
 app.use(bodyParser.json()); // for parsing application/json
@@ -34,15 +45,6 @@ require('./bootstrap/passportSetup.js')(app);
 
 // Require routes.
 require('./routes')(app);
-
-// Set up environment variables.
-const args = process.argv.slice(2);
-// TODO: Figure out a better way to do this with grunt-nodemon.
-process.env.ENVIRONMENT = args[0].split('=')[1];
-
-// TODO: Make this dynamic based on environment.
-process.env.TWILIO_ACC_SID = config.TWILIO_ACC_SID;
-process.env.TWILIO_AUTH_TOKEN = config.TWILIO_AUTH_TOKEN;
 
 // Set locals for pug.
 app.locals.env = {};

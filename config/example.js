@@ -1,5 +1,5 @@
 /**
- * Copy this file into config/index.js and complete with the appropriate values.
+ * Copy this file into config/local.js and complete with the appropriate values.
  */
 
 module.exports = {
