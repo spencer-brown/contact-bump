@@ -6,7 +6,6 @@ const app = express();
 const args = process.argv.slice(2);
 // TODO: Figure out a better way to do this with grunt-nodemon.
 process.env.ENVIRONMENT = args[0].split('=')[1];
-console.log('process.env.ENVIRONMENT', process.env.ENVIRONMENT);
 const config = require('./config');
 
 

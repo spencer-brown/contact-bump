@@ -1,6 +1,7 @@
 const CronJob = require('cron').CronJob;
 const sync = require('synchronize');
-const twilio = require('twilio')(process.env.TWILIO_ACC_SID, process.env.TWILIO_AUTH_TOKEN);
+const config = require('../config');
+const twilio = require('twilio')(config.TWILIO_ACC_SID, config.TWILIO_AUTH_TOKEN);
 const _ = require('underscore');
 
 const db = require('../db');

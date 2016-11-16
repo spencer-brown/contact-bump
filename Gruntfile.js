@@ -1,5 +1,10 @@
 module.exports = function(grunt) {
   grunt.initConfig({
+    env: {
+      dev: {
+        src: 'config/dev.json'
+      }
+    },
     sass: {
       dist: {
         options: {
@@ -72,6 +77,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-env');
 
-  grunt.registerTask('start', ['concat', 'concurrent:start']);
+  grunt.registerTask('start', ['env:dev', 'concat', 'concurrent:start']);
 };

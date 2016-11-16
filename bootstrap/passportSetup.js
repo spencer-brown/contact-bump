@@ -1,3 +1,5 @@
+'use strict';
+
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const sync = require('synchronize');
@@ -9,16 +11,9 @@ const db = require('../db');
 
 module.exports = (app) => {
 
-  let callbackURL;
-  if (process.env.ENVIRONMENT === 'prod') {
-    callbackURL = 'http://contact-bump.spencer.sx/login/facebook/return';
-  } else if (process.env.ENVIRONMENT === 'dev') {
-    callbackURL = 'http://localhost:3000/login/facebook/return';
-  }
-
   // Configure Passport strategy.
   passport.use(new FacebookStrategy({
-    callbackURL,
+    callbackURL: config.FACEBOOK_CALLBACK_URL,
     clientID: config.FACEBOOK_APP_ID,
     clientSecret: config.FACEBOOK_APP_SECRET,
   }, (accessToken, refreshToken, profile, cb) => {

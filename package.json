@@ -30,6 +30,7 @@
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-env": "^0.4.4",
     "grunt-nodemon": "^0.4.2"
   }
 }
