@@ -48,6 +48,7 @@ new CronJob(ONCE_PER_MIN_PATTERN, () => {
     try {
       sync.await(twilio.sendMessage({
         body,
+        // TODO: Make the 'to' number dependent on the user.
         to: '+17404053797',
         from: '+16697219661'
       }, sync.defer()));

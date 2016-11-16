@@ -95,6 +95,10 @@ function router(app) {
       console.log('resetting', names);
 
       sync.await(db.collection('contacts').update({
+        // TODO: Fix this query.
+        // - `name` is not a field anymore.
+        // - This query should incorporate the user ID.
+        // - Need to do something smarter than name-matching in case there are conflicts.
         name: {
           $in: names
         }
