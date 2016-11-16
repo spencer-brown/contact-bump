@@ -85,33 +85,35 @@ function router(app) {
     });
   });
 
-  app.post('/incoming', (req, res, next) => {
-    sync.fiber(() => {
-      console.log('incoming message Body:', req.body.Body);
+  // TODO: Support responses via Twilio to mark people as contacted.
+  //
+  // app.post('/incoming', (req, res, next) => {
+  //   sync.fiber(() => {
+  //     console.log('incoming message Body:', req.body.Body);
 
-      const msg = req.body.Body;
-      const names = msg.toLowerCase().replace(' ', '').split(',');
+  //     const msg = req.body.Body;
+  //     const names = msg.toLowerCase().replace(' ', '').split(',');
 
-      console.log('resetting', names);
+  //     console.log('resetting', names);
 
-      sync.await(db.collection('contacts').update({
-        // TODO: Fix this query.
-        // - `name` is not a field anymore.
-        // - This query should incorporate the user ID.
-        // - Need to do something smarter than name-matching in case there are conflicts.
-        name: {
-          $in: names
-        }
-      }, {
-        $set: {
-          needsBumpAt: Date.now() + TWO_MINS_IN_MS,
-          bumpedAt: null
-        }
-      }, sync.defer()));
+  //     sync.await(db.collection('contacts').update({
+  //       // TODO: Fix this query.
+  //       // - `name` is not a field anymore.
+  //       // - This query should incorporate the user ID.
+  //       // - Need to do something smarter than name-matching in case there are conflicts.
+  //       name: {
+  //         $in: names
+  //       }
+  //     }, {
+  //       $set: {
+  //         needsBumpAt: Date.now() + TWO_MINS_IN_MS,
+  //         bumpedAt: null
+  //       }
+  //     }, sync.defer()));
 
-      res.sendStatus(200).end();
-    });
-  });
+  //     res.sendStatus(200).end();
+  //   });
+  // });
 }
 
 module.exports = router;

@@ -12,6 +12,7 @@ Contact Bump reminds you to reach out to people each day by texting you their na
 
 - [ ] Fix up mobile views.
 - [ ] Update job interval for production.
+- [ ] Support marking contacts as having been contacted via Twilio.
 
 ## Database Collections
 
