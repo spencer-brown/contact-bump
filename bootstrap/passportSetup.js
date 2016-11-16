@@ -11,7 +11,7 @@ module.exports = (app) => {
 
   let callbackURL;
   if (process.env.ENVIRONMENT === 'prod') {
-    callbackURL = 'http://contact-bump-dev.us-east-1.elasticbeanstalk.com/login/facebook/return';
+    callbackURL = 'http://contact-bump.spencer.sx/login/facebook/return';
   } else if (process.env.ENVIRONMENT === 'dev') {
     callbackURL = 'http://localhost:3000/login/facebook/return';
   }
