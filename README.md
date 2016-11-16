@@ -1,10 +1,17 @@
 # Contact Bump
 
-Your personal assistant for keeping in touch with important contacts
+Your personal assistant for keeping in touch with important contacts.
+
+Contact Bump reminds you to reach out to people each day by texting you their names and numbers.
 
 ## Dev Setup
 
 1. Copy config/example.json to config/index.json and complete the newly created file with the appropriate values.
+
+## TODO
+
+- [ ] Fix up mobile views.
+- [ ] Update job interval for production.
 
 ## Database Collections
 
