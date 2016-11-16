@@ -14,7 +14,7 @@ if (process.env.ENVIRONMENT === 'prod') {
 } else {
   // dev
   console.log('process.env.ENVIRONMENT was', process.env.ENVIRONMENT);
-  config = require('./local');
+  config = require(`./${process.env.ENVIRONMENT}`);
 }
 
 module.exports = config;

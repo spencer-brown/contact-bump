@@ -4,7 +4,7 @@ public/js/*
 .sass-cache
 ngrok
 bower_components
-config/local.js
+config/dev.js
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
