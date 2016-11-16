@@ -3,15 +3,7 @@ const app = express();
 
 
 // Set up environment variables.
-const args = process.argv.slice(2);
-// TODO: Figure out a better way to do this with grunt-nodemon.
-process.env.ENVIRONMENT = args[0].split('=')[1];
 const config = require('./config');
-
-
-// TODO: Make this dynamic based on environment.
-process.env.TWILIO_ACC_SID = config.TWILIO_ACC_SID;
-process.env.TWILIO_AUTH_TOKEN = config.TWILIO_AUTH_TOKEN;
 
 // Set up bodyParser.
 const bodyParser = require('body-parser');

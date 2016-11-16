@@ -11,4 +11,4 @@ COPY . /usr/src/app
 EXPOSE 3000
 
 # Run app start command
-CMD npm install && ENV=prod npm start
+CMD npm install && npm start
