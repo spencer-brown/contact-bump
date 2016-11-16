@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index --env=$ENV"
+    "start": "node index --env=prod"
   },
   "author": "Spencer Brown <me@spencer.sx>",
   "license": "ISC",
