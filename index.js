@@ -7,6 +7,7 @@ const config = require('./config');
 const args = process.argv.slice(2);
 // TODO: Figure out a better way to do this with grunt-nodemon.
 process.env.ENVIRONMENT = args[0].split('=')[1];
+console.log('process.env.ENVIRONMENT', process.env.ENVIRONMENT);
 
 
 // TODO: Make this dynamic based on environment.
