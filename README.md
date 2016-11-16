@@ -15,7 +15,7 @@ Your personal assistant for keeping in touch with important contacts
 * {Ojbect} facebook.profile
 
 `contacts` - user-created contact records
-* _id
+* {String} _id
 * {Number} needsBumpAt - ms timestamp indicating the next time this contact will be bumped
 * {String} firstname
 * {String} lastName
