@@ -33,7 +33,6 @@ app.use(session({
   saveUninitialized: false,
   secret: config.REDIS_SECRET,
   store: new RedisStore({
-    // TODO: Set these more intelligently - use existing env vars if they exist.
     host: config.REDIS_HOST,
     port: config.REDIS_PORT,
     pass: config.REDIS_PASS
