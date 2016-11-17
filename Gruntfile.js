@@ -41,9 +41,6 @@ module.exports = function(grunt) {
       dev: {
         script: 'index.js',
         options: {
-          args: [
-            'env=dev'
-          ],
           ignore: [
             'node_modules/**',
             'bower_components/**',

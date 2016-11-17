@@ -1,8 +1,9 @@
-@import "bootstrap-overrides";
+@import 'bootstrap-overrides';
+@import 'bootstrap';
 
-/* Installed CSS */
-@import "bootstrap";
-@import "font-awesome";
+// Change the font path used by font awesome's SCSS so that it can find the bower-installed fonts.
+$fa-font-path: '/font-awesome/fonts';
+@import 'font-awesome';
 
 /* Custom CSS */
-@import "style";
+@import 'style';

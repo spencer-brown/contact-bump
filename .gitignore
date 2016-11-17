@@ -1,9 +1,7 @@
 node_modules
 public/css/*.css.map
-public/js/*
 .sass-cache
 ngrok
-bower_components
 config/dev.json
 
 # Elastic Beanstalk Files

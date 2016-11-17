@@ -16,6 +16,7 @@ app.locals.moment = require('moment');
 
 // Set up static file serving.
 app.use(express.static('public'));
+app.use(express.static('bower_components'));
 
 // Set up sessions.
 const session = require('express-session');
