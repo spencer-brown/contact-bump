@@ -6,7 +6,7 @@ Contact Bump reminds you to reach out to people each day by texting you their na
 
 ## Dev Setup
 
-1. Copy config/example.json to config/index.json and complete the newly created file with the appropriate values.
+1. Copy config/example.json to config/dev.json and complete the newly created file with the appropriate values.
 
 ## TODO
 
